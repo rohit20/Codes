@@ -1,0 +1,89 @@
+/*********************************************************************
+ * File                 : ModulerApproachDemo.txt
+ * Author Name          : Capgemini
+ * Desc                 : Program to check whether the cost of service 
+ * Version              : 1.0
+ * Last Modified Date   : 08-Jan-2018
+ * Change Description   : Description about the changes implemented
+ *********************************************************************/
+BEGIN
+INITIALIZE Rating AS INTEGER
+PROMPT "Enter Rating" AND STORE IN Rating
+INPUT(Rating)
+FEEDBACK(Rating)
+INITIALIZE Type AS STRING
+INITIALIZE Cost AS INTEGER
+INITIALIZE Service AS STRING
+PROMPT "Enter Type of Service" AND STORE IN Service
+PROMPT "Enter Type of Vehical" AND STORE IN Type
+PROMPT "Enter Cost of Vehical" AND STORE IN Cost
+SERVICE_COST(Service,Type,Cost)
+END
+
+/*********************************************************************
+* Module Name         : SERVICR_COST()
+* Input Parameters    : number,String
+* Author              : Capgemini
+* Creation Date       : 08-Jan-2018
+* Description         : Checking for cost 
+ *********************************************************************/
+SUB SERVICE_COST(Service,Type,Cost)
+IF(Service=="F")THEN
+	IF(Type=="All")THEN
+		Total_cost=200
+		PRINT("Vehical Type=ALL ,Total cost=200")
+	ELSE
+		PRINT("WRONG INPUT")
+	END IF
+ELSE IF(Service=="BR")THEN
+	IF(Type=="Hatchback")THEN
+		Total_cost=(15/100*Cost)
+		PRINT("Vehical Type=Hatchback ,Total cost=",+Total_cost)
+	IF ELSE(Type=="Small Cars")THEN
+		Total_cost=(10/100*Cost)
+		PRINT("Vehical Type=Small Cars,Total cost=",+Total_cost)
+	IF ELSE(Type=="Sedan")THEN
+		Total_cost=(18/100*Cost)
+		PRINT("Vehical Type=Sedan,Total cost=",+Total_cost)
+	ELSE
+		PRINT("WRONG INPUT")	
+	END IF
+ELSE
+	PRINT("WRONG INPUT")
+END IF	
+
+/*********************************************************************
+* Module Name         : FEEDBACK()
+* Input Parameters    : number
+* Author              : Capgemini
+* Creation Date       : 08-Jan-2018
+* Description         : Checking for Feedback 
+ *********************************************************************/	
+
+SUB FEEDBACK(RAting)
+IF(1<Rating<5)THEN
+	DISPLAY("FEEDBACK=Poor")
+IF ELSE(5=<Rating<=7)THEN
+	DISPLAY("FEEDBACK=Average")
+IF ELSE(8=<Rating<=9)THEN
+	DISPLAY("FEEDBACK=Good")
+ELSE
+	DISPLAY("FEEDBACK=Excellent")
+END IF
+
+/*********************************************************************
+* Module Name         : INPUT()
+* Input Parameters    : number
+* Author              : Capgemini
+* Creation Date       : 08-Jan-2018
+* Description         : Checking for Valid Input 
+ *********************************************************************/
+
+SUB INPUT(Rating)
+IF(1>Rating>10)THEN
+	DIPLAY("Invalid Rating")
+ELSE
+	DISPLAY("RATING IS:",Rating)
+END IF
+      
+	
